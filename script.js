@@ -11,34 +11,31 @@ function mult(n1,n2){
     return n1*n2
 }
 
-function divide(n1,n2){
+function divide(n1,n2){ 
     return n1/n2
 }
 
 function operator(n1,n2,op){
-    n1=parseInt(n1)
-    n2=parseInt(n2)
+    n1=Number.isInteger(Number(n1))?parseInt(n1) : parseFloat(n1)
+    n2=Number.isInteger(Number(n2))?parseInt(n2) : parseFloat(n2)
     switch(op){
         case "+":
-            rsp=add(n1,n2)
-            rsp=String(rsp)
-            return rsp
+            result=add(n1,n2)
+            break
         case "-":
-            rsp=sub(n1,n2)
-            rsp=String(rsp)
-            return rsp
+            result=sub(n1,n2)
+            break
         case "/":
             if(n2==0){
                 return false;
             }
-            rsp=divide(n1,n2)
-            rsp=String(rsp)
-            return rsp
-        case "*":
-            rsp=mult(n1,n2)
-            rsp=String(rsp)
-            return rsp
+            result=divide(n1,n2)
+            break
+        case "x":
+            result=mult(n1,n2)
+            break
     }
+    return Number.isInteger(result) ? String(result) : String(parseFloat(result.toFixed(7)));
 }
 
 let visor=document.querySelector(".visor")
@@ -55,7 +52,7 @@ let proximo=false;
 operators.forEach(operator=>{
     operator.addEventListener("click",(e)=>{
         numOp=e.target.textContent
-        if(operation.length==1){
+        if(operation.length==1 && !isNaN(operation[0])){
             proximo=false
             operation.push(numOp)
             
@@ -66,6 +63,7 @@ operators.forEach(operator=>{
         else if(operation.length==3){
             equalBtn.click()
             operation.push(numOp)
+            proximo=false
         }
         updateVisor(operation[1])
     })
@@ -75,26 +73,57 @@ numbers.forEach(number=>{
     number.addEventListener("click",(e)=>{
         num=String(e.target.textContent)
         // console.log(isNaN(num(operation[0])))
-        if(operation[0]=="0" || isNaN(operation[0] || proximo)){
+        if(operation[0]=="0" || isNaN(operation[0]) || proximo  ){
+            if(operation[0]=="0" && num=="."){
+                operation[0]=operation[0]+num
+            }
+            else{
+                operation[0]=String(num)
+            }
             proximo=false
-            operation[0]=String(num)
             updateVisor(operation[0])
         }
         else if(operation.length==1 &&  !proximo){
-            operation[0]=operation[0]+num
+            if(num=="."){
+                if(operation[0].includes(".")){
+                    true
+                }
+                else{
+                    operation[0]=operation[0]+num
+                }   
+            }
+            else{
+                operation[0]=operation[0]+num
+            }                    
             updateVisor(operation[0])
 
         }
         else if(operation.length==2){
-            operation.push(num)
+            if(num=="."){
+                operation.push("0"+num)
+            }
+            else{
+                operation.push(num)
+            }
             updateVisor(operation[2])
         }
         else if(operation.length==3){
-            operation[2]=operation[2]+num
+            if(num=="."){
+                if(operation[2].includes(".")){
+                    true
+                }
+                else{
+                    operation[2]=operation[2]+num
+                }   
+            }
+            else{
+                operation[2]=operation[2]+num
+            }                    
             updateVisor(operation[2])
         }
         else{
             updateVisor("erro")
+            console.log(proximo )
         }
 
     })
@@ -152,6 +181,7 @@ equalBtn.addEventListener("click",(e)=>{
         updateVisor(result)
         operation[0]=result
         operation.splice(1,2)
-        console.log(operation)
+        // console.log(operation)
+        // console.log("igual foi clicado")
     }
 })
