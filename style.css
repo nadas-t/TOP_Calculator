@@ -1,24 +1,129 @@
-.page{
 
+html{
+    height: 100%;
+    margin: 0;
+}
+button{
+    all: unset;
+    cursor: pointer;
+}
+button:hover{
+    background-color: aqua;
+}
+button:active{
+    background-color: blueviolet;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    height: 100%;
+}
+
+.page{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(190, 190, 190);
 }
 
 .calculator{
-
+    background-color: rgb(0, 12, 78);
+    width: 450px;
+    height: 550px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    justify-content: center;
+    border-radius: 10px;
+    border: 7px solid black;
 }
 
 .visor{
+    background-color: rgba(196, 196, 196, 0.705);
+    width: 382.5px;
+    height: 75px;
+    margin-top: 20px;
+    color: #34cf00;
+    text-shadow:
+    -1px -1px 0 black,
+     1px -1px 0 black,
+    -1px  1px 0 black,
+     1px  1px 0 black;
+    font-family: monospace;
+    font-size: 45px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    
+    padding-right: 5px;
+    flex-wrap: nowrap;
+    border-radius: 5px;
+    border: 7px solid black;
 
 }
 
 .calc-buttons{
-
+    /* background-color: rgb(126, 126, 126); */
+    width: 400px;
+    height: 420px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
 .numbers{
+    /* background-color: brown; */
+    width: 75%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.number{
+    background-color: rgb(179, 183, 202);
+    width: 30%;
+    height: 80px;
+    color: black;
+    text-align: center;
+    font-size: 25px;
+    border: 5px solid black;
+    box-sizing: border-box
+    
+}
+
+
+.operations{
+    width: 25%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: rgb(42, 12, 70);
 
 }
 
-.operations{
-
+.operator{
+    background-color: coral;
+    width: 80%;
+    height: 14%;
+    color: black;
+    text-align: center;
+    font-size: 25px;
+    border: 5px solid black;
+    box-sizing: border-box
 
 }
