@@ -36,9 +36,8 @@ Create a simple web-based calculator capable of performing the four basic arithm
 
     JavaScript (ES6)
 
-📸 Screenshot (optional)
-
-    add a screenshot of your working calculator here.
+📸 Screenshot 
+    ![image of the calculator](image.png)
 
 📁 Project Structure
 
